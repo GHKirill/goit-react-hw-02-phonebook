@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import css from './ContactList.module.css';
 export default function Filter({ contacts, onButtonDeleteClick }) {
   if (contacts.length === 0) return;
@@ -18,4 +19,11 @@ export default function Filter({ contacts, onButtonDeleteClick }) {
       ))}
     </ul>
   );
+}
+Filter.propTypes = {
+  onButtonDeleteClick: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.exact({
+    name: PropTypes.string,
+    number: PropTypes.string
+  }))
 }
