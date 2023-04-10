@@ -5,8 +5,6 @@ export default function Filter({ contacts, onButtonDeleteClick }) {
     <ul className={css.contactList}>
       {contacts.map(({ id, name, number }) => (
         <li key={id} className={css.contactItem}>
-          {/* <Contact_new props={(name, number, id, onButtonDeleteClick)} /> */}
-
           <span className={css.contactName}>{name}</span>
           <span className={css.contactNumber}>{number}</span>
           <button
