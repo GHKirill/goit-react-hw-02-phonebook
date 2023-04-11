@@ -4,30 +4,21 @@ import { nanoid } from 'nanoid';
 import css from './Filter.module.css';
 
 export default class Filter extends Component {
-  state = { filter: '' };
-
   handleFilter = event => {
-    this.setState({ filter: event.currentTarget.value });
-  };
-  handleFilterChange = event => {
-    console.log(event.target.value);
-    console.log(this.state);
-    setTimeout(() => this.props.onChange({ ...this.state }), 0);
-    // this.props.onChange({ ...this.state });
+    this.props.filter({ filter: event.currentTarget.value });
   };
 
   render() {
     const idFilter = nanoid();
     return (
-      <form className={css.formFilter} onChange={this.handleFilterChange}>
+      <form className={css.formFilter}>
         <label htmlFor={idFilter} className={css.filterLabel}>
           Find Contact by Name
         </label>
-        {/* <p className={css.filterLabel}>Find Contact by Name</p> */}
         <input
           type="text"
           name="filter"
-          value={this.state.filter}
+          value={this.props.value}
           onChange={this.handleFilter}
         />
       </form>
@@ -43,6 +34,7 @@ export default class Filter extends Component {
 //     </div>
 //   );
 // }
-// Filter.propTypes = {
-//   handleFilter: PropTypes.func.isRequired,
-// };
+Filter.propTypes = {
+  filter: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
