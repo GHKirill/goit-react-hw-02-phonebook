@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import css from './ContactList.module.css';
-export default function Filter({ contacts, onButtonDeleteClick }) {
+export default function ContactList({ contacts, onButtonDeleteClick }) {
   if (contacts.length === 0) return;
   return (
     <ul className={css.contactList}>
@@ -20,10 +20,13 @@ export default function Filter({ contacts, onButtonDeleteClick }) {
     </ul>
   );
 }
-Filter.propTypes = {
+ContactList.propTypes = {
   onButtonDeleteClick: PropTypes.func.isRequired,
-  contacts: PropTypes.arrayOf(PropTypes.exact({
-    name: PropTypes.string,
-    number: PropTypes.string
-  }))
-}
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      name: PropTypes.string,
+      number: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ),
+};

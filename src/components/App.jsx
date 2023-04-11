@@ -25,11 +25,14 @@ export class App extends Component {
   checkContactAsCurrent = newName => {
     return this.state.contacts.some(({ name }) => name === newName);
   };
-  handleFilter = event => {
-    const { value } = event.currentTarget;
-    this.setState({ filter: value });
+  handleFilter = value => {
+    console.log(value);
+    // const { value } = event.currentTarget;
+    this.setState({ filter: value.filter });
+    console.log(this.state);
   };
   handleFilteredContacts = () => {
+    // this.setState({ filter: value });
     return this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter)
     );
@@ -46,9 +49,11 @@ export class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm onSubmit={values => this.submitContactForm(values)} />
         <h2>Contacts</h2>
-        <Filter handleFilter={this.handleFilter} />
+        {/* <Filter handleFilter={this.handleFilter} /> */}
+        <Filter onChange={value => this.handleFilter(value)} />
         <ContactList
           contacts={this.handleFilteredContacts()}
+          // contacts={value => this.handleFilteredContacts(value)}
           onButtonDeleteClick={this.onButtonDeleteClick}
         />
       </div>
